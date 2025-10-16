@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
@@ -21,14 +21,15 @@ export default defineConfig({
         https: httpsOptions,
         proxy: {
             '/songs': {
-                target: 'https://localhost:8080',
+                target: 'https://localhost:8443',
                 changeOrigin: true,
                 secure: false,
             },
-            '/token': {
-                target: 'https://localhost:8080',
+            '/oauth2/authorization/google': {
+                target: 'https://localhost:8443',
                 changeOrigin: true,
                 secure: false,
+                rewrite: (path) => path,
             },
         },
     },
